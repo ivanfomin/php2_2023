@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:15
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      TZ: Europe/Moscow
+      POSTGRES_PASSWORD: profit
+      POSTGRES_USER: profit
+      POSTGRES_DB: profit
+    ports:
+      - "5431:5432"
+
+  php-fpm:
+    build:
+      context: docker/php-fpm
+    volumes:
+      - ./:/app
+    depends_on:
+      - db
+    environment:
+      PHP_IDE_CONFIG: "serverName=Docker"
+
+  php-cli:
+     build:
+       context: docker/php-cli
+     volumes:
+        -   ./:/app
+     environment:
+      PHP_IDE_CONFIG: "serverName=Docker"
+
+  nginx:
+    build:
+      context: docker/nginx-php
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/app
+    depends_on:
+      - php-fpm
+
+
+
+volumes:
+  pgdata:

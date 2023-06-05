@@ -13,7 +13,7 @@ class Article extends \Model
 
     public static function findLastArticles(): array
     {
-        $db = new \Db();
+        $db = \Db::instance();;
         $sql = 'SELECT * FROM ' . self::TABLE . ' ORDER BY id DESC LIMIT 3';
         return $db->query($sql, self::class);
     }

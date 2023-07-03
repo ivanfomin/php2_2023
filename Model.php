@@ -18,6 +18,7 @@ abstract class Model
     {
         $db = \Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
+
         return $db->query($sql, static::class, ['id' => $id])[0];
     }
 

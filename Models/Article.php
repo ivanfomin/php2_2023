@@ -13,11 +13,21 @@ class Article extends \Model
 
     public function __get($name)
     {
-        if (empty($this->author_id)) {
-            return 'Инкогнито';
-        } else {
-            return Author::findById($this->author_id)->name;
+        if('author' == $name) {
+            if (empty($this->author_id)) {
+                return 'Инкогнито';
+            } else {
+                return Author::findById($this->author_id)->name;
+            }
         }
+    }
+
+    public function __isset(string $name): bool
+    {
+        if ('author' == $name && !empty($this->author_id)) {
+            return true;
+        }
+        return false;
     }
 
     public static function findLastArticles(): array

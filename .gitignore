@@ -7,7 +7,6 @@
 out
 gen
 
-/vendor/
 config_local.php
 composer.json
 vendor

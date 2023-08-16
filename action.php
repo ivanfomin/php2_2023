@@ -25,8 +25,13 @@ if (isset($_POST['update'])) {
 
 } else if (isset($_POST['insert'])) {
     $article = new Article();
-    $article->title = $title;
-    $article->content = $content;
+    $article->fill(['title' => $title, 'content' => $content]);
+    //$article->title = $title;
+   // $article->content = $content;
+   // $article->wrong = 123;
+
+
+
     $article->save();
 }
 

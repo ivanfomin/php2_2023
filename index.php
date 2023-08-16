@@ -16,17 +16,28 @@ if (class_exists($class)) {
     $ctrl = new NewsContr();
 }
 
-$act = $request[2];
-$id = (int)$parsed['query'];
-if (method_exists($ctrl, $act)) {
-    if (!empty($id)) {
-        $ctrl->$act($id);
-    } else {
-        $ctrl->$act();
-    }
+if (array_key_exists('query', $parsed)) {
+    $id = (int)$parsed['query'];
 } else {
-    $ctrl->actionAll();
+    $id = 0;
 }
+try {
+    if (array_key_exists(2, $request)) {
+        $act = $request[2];
+        if (method_exists($ctrl, $act)) {
+            $ctrl->$act($id);
+        }
+    } else {
+        $ctrl->actionAll();
+    }
+} catch (\Exceptions\DBException $dbexception) {
+    $message = $dbexception->getMessage();
+    include_once __DIR__ . '/templates/db_error.php';
+} catch (\Exceptions\Exception404 $exception404) {
+    $message = $exception404->getMessage();
+    include_once __DIR__ . '/templates/not_found_page_error.php';
+}
+
 
 
 

@@ -19,7 +19,12 @@ abstract class Model
         $db = \Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
 
-        return $db->query($sql, static::class, ['id' => $id])[0];
+        $article = $db->query($sql, static::class, ['id' => $id])[0];
+        if ($article == null) {
+            throw new \Exceptions\Exception404('Not found article!');
+        } else {
+            return $article;
+        }
     }
 
     protected function insert()
@@ -77,6 +82,33 @@ abstract class Model
             $db->execute($sql, [':id' => $this->id]);
         }
 
+    }
+
+    public function fill(array $data)
+    {
+        $errors = new \Exceptions\MultiException();
+//
+        foreach ($data as $key => $value) {
+
+            $validateMethod = 'validate' . ucfirst($key);
+
+            if (method_exists($this, $validateMethod)) {
+                try {
+                    $this->$validateMethod($value);
+                    $this->$key = $value;
+
+                } catch (\Exception $exception) {
+                    $errors->add($exception);
+                    continue;
+                }
+            }
+            var_dump($errors);die;
+            if (!empty($errors)) {
+                throw $errors;
+            }
+
+
+        }
     }
 
 }

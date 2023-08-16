@@ -2,7 +2,7 @@
 
 class View implements Countable
 {
-    use DataTrait;
+    use MagicTrait;
     public function display(string $template)
     {
         include $template;

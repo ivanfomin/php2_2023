@@ -19,7 +19,11 @@ class Db
     {
         $config = new \App\Config();
         $dsn = "pgsql:host=" . $config->data['db']['host'] . ";port=" . $config->data['db']['port'] .";dbname=" . $config->data['db']['dbname'] . ";";
-        $this->dbh = new \PDO($dsn, $config->data['db']['user'], $config->data['db']['password'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        try {
+            $this->dbh = new \PDO($dsn, $config->data['db']['user'], $config->data['db']['password'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        } catch (Exception $exception) {
+            throw new \Exceptions\DBException('You have to connect to database!');
+        }
     }
 
     public function query($sql, $class = stdClass::class, $params = []): array

@@ -36,4 +36,19 @@ class Article extends \Model
         $sql = 'SELECT * FROM ' . self::TABLE . ' ORDER BY id DESC LIMIT 3';
         return $db->query($sql, self::class);
     }
+
+    public function validateTitle($title)
+    {
+        if((mb_strlen($title)<3) || mb_strlen($title)>50) {
+            throw new \Exception('Length of the string is not compatible!');
+        }
+
+    }
+
+    public function validateContent($content)
+    {
+        if((mb_strlen($content)<10) || mb_strlen($content)>5000) {
+            throw new \Exception('Length of the string is not compatible!');
+        }
+    }
 }

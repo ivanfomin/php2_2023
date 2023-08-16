@@ -1,6 +1,6 @@
 <?php
 
-trait DataTrait
+trait MagicTrait
 {
     protected array $data = [];
     public function __set($key, $value)

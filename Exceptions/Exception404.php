@@ -8,7 +8,7 @@ class Exception404 extends \Exception
     {
         parent::__construct($message, $code, $previous);
         $this->message = $message;
-        $this->code = 404;
+        $this->code = 404;  
     }
 
 }

@@ -88,6 +88,7 @@ abstract class Model
     {
         $errors = new \Exceptions\MultiException();
 //
+
         foreach ($data as $key => $value) {
 
             $validateMethod = 'validate' . ucfirst($key);
@@ -102,10 +103,8 @@ abstract class Model
                     continue;
                 }
             }
-            var_dump($errors);die;
-            if (!empty($errors)) {
-                throw $errors;
-            }
+           // var_dump($errors);die;
+
 
 
         }

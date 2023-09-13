@@ -40,15 +40,15 @@ class Article extends \Model
     public function validateTitle($title)
     {
         if((mb_strlen($title)<3) || mb_strlen($title)>50) {
-            throw new \Exception('Length of the string is not compatible!');
+            throw new \Exception('Length of the title is not compatible!');
         }
 
     }
 
     public function validateContent($content)
     {
-        if((mb_strlen($content)<10) || mb_strlen($content)>5000) {
-            throw new \Exception('Length of the string is not compatible!');
+        if((mb_strlen($content)<5) || mb_strlen($content)>5000) {
+            throw new \Exception('Length of the content is not compatible!');
         }
     }
 }

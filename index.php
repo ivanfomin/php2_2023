@@ -1,8 +1,14 @@
 <?php
 
 use \Controllers\NewsContr;
+use SebastianBergmann\Timer\Timer;
+use SebastianBergmann\Timer\ResourceUsageFormatter;
+
 
 require_once __DIR__ . '/autoload.php';
+
+$timer = new Timer();
+$timer->start();
 
 $parsed = parse_url($_SERVER['REQUEST_URI']);
 
@@ -39,6 +45,7 @@ try {
 }
 
 
+print (new ResourceUsageFormatter)->resourceUsage($timer->stop());
 
 
 //$art = new Controllers\NewsContr();

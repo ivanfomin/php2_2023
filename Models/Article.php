@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Article extends \Model
+class Article extends \Models\Model
 {
 
     protected const TABLE = 'news';

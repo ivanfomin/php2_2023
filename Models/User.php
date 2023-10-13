@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class User extends \Model
+class User extends \Models\Model
 {
 
     protected const TABLE = 'users';

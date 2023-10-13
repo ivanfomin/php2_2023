@@ -4,7 +4,7 @@ use App\Db;
 
 include_once __DIR__ . '/../autoload.php';
 
-$db = new Db();
+$db = App\Db::instance();
 
 $table = 'products';
 

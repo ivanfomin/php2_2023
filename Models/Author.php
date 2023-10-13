@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Author extends \Model
+class Author extends \Models\Model
 {
     protected const TABLE = 'authors';
 

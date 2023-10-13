@@ -1,5 +1,8 @@
 <?php
 
+namespace Models;
+use App;
+
 abstract class Model
 {
 

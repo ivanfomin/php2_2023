@@ -43,6 +43,7 @@ class ArticleTest extends TestCase
         $this->fail('Expected exception for short title');
     }
 
+
     public function testAddArticleShortContent(): void
     {
         $this->expectException(\Exception::class);

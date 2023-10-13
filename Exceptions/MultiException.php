@@ -36,5 +36,10 @@ class MultiException extends \Exception implements \Iterator
         reset($this->data);
     }
 
+    public function count()
+    {
+        return count($this->data);
+    }
+
 
 }

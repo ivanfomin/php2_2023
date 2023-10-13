@@ -19,11 +19,11 @@ abstract class Model
         $db = \Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
 
-        $article = $db->query($sql, static::class, ['id' => $id])[0];
-        if ($article == null) {
-            throw new \Exceptions\Exception404('Not found article!');
+        $model = $db->query($sql, static::class, ['id' => $id])[0];
+        if ($model == null) {
+            throw new \Exceptions\Exception404('Not found !');
         } else {
-            return $article;
+            return $model;
         }
     }
 
@@ -87,7 +87,6 @@ abstract class Model
     public function fill(array $data)
     {
         $errors = new \Exceptions\MultiException();
-//
 
         foreach ($data as $key => $value) {
 
@@ -103,10 +102,9 @@ abstract class Model
                     continue;
                 }
             }
-           // var_dump($errors);die;
-
-
-
+        }
+        if ($errors->count() > 0) {
+            throw $errors;
         }
     }
 

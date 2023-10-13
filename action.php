@@ -25,7 +25,12 @@ if (isset($_POST['update'])) {
 
 } else if (isset($_POST['insert'])) {
     $article = new Article();
-    $article->fill(['title' => $title, 'content' => $content]);
+    try {
+        $article->fill(['title' => $title, 'content' => $content]);
+    } catch (\Exceptions\MultiException $exceptions) {
+        include_once __DIR__ . '/templates/multiexceptions.php';
+        die();
+    }
     //$article->title = $title;
    // $article->content = $content;
    // $article->wrong = 123;

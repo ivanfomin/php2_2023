@@ -8,7 +8,13 @@
     <title>Not article</title>
 </head>
 <body>
-<h2 style="color: brown"><?=$message;?></h2>
-<a href="\">"Back"</a>
+<?php
+foreach ($exceptions as $exception) {
+    ?> <h1 style="color: indianred "><?= $exception->getMessage(); ?></h1>
+<?php
+}
+?>
+<a href="\Admin">Back</a>
+
 </body>
 </html>

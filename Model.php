@@ -9,14 +9,14 @@ abstract class Model
 
     public static function findAll(): array
     {
-        $db = \Db::instance();
+        $db = App\Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id';
         return $db->query($sql, static::class);
     }
 
     public static function findById($id): static
     {
-        $db = \Db::instance();
+        $db = App\Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
 
         $model = $db->query($sql, static::class, ['id' => $id])[0];
@@ -42,7 +42,7 @@ abstract class Model
 
         $sql = 'INSERT INTO ' . static::TABLE . ' (' . implode(',', $columns) . ') VALUES (' . implode(',', $binds) . ');';
 
-        $db = \Db::instance();
+        $db = App\Db::instance();
         $db->execute($sql, $params);
         $this->id = $db->lastId();
     }
@@ -60,7 +60,7 @@ abstract class Model
 
         $sql = 'UPDATE ' . static::TABLE . ' SET ' . mb_substr($prepare, 0, -2) . ' WHERE id=:id';
 
-        $db = \Db::instance();
+        $db = App\Db::instance();
         $db->execute($sql, $params);
 
     }
@@ -78,7 +78,7 @@ abstract class Model
     {
         if (!empty($this->id)) {
             $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id=:id;';
-            $db = \Db::instance();
+            $db = App\Db::instance();
             $db->execute($sql, [':id' => $this->id]);
         }
 

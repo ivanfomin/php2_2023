@@ -15,8 +15,6 @@ if (isset($_POST['update'])) {
     $article->title = $title;
     $article->content = $content;
     $article->save();
-//    $admin = new AdminContr();
-//    $admin->updateArticle(__DIR__ . '/templates/updateArticle.php', );
 
 } else if (isset($_POST['delete'])) {
     $article = Article::findById($id);

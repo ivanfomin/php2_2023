@@ -1,8 +1,10 @@
 <?php
 
+namespace App;
 trait MagicTrait
 {
     protected array $data = [];
+
     public function __set($key, $value)
     {
         $this->data[$key] = $value;

@@ -5,12 +5,21 @@ class Db
 {
 
     protected PDO $dbh;
+    private static $conn;
 
-    public function __construct()
+    public static function instance()
     {
-        $db = include __DIR__ . '/config_local.php';
-        $dsn = "pgsql:host=$db[host];port=$db[port];dbname=$db[dbname];";
-        $this->dbh = new \PDO($dsn, $db['user'], $db['password'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        if(self::$conn == null) {
+            self::$conn = new self();
+        }
+        return self::$conn;
+    }
+
+     private function __construct()
+    {
+        $config = new \App\Config();
+        $dsn = "pgsql:host=" . $config->data['db']['host'] . ";port=" . $config->data['db']['port'] .";dbname=" . $config->data['db']['dbname'] . ";";
+        $this->dbh = new \PDO($dsn, $config->data['db']['user'], $config->data['db']['password'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
 
     public function query($sql, $class = stdClass::class, $params = []): array
@@ -27,10 +36,14 @@ class Db
 //        return $sth->fetchObject($class);
 //    }
 
-    public function execute($query, $params = [])
+    public function execute($query, $params = []): bool
     {
-        //var_dump($query);die();
         return $this->dbh->prepare($query)->execute($params);
+    }
+
+    public function lastId()
+    {
+        return $this->dbh->lastInsertId();
     }
 
 }

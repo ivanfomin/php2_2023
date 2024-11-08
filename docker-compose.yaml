@@ -1,11 +1,11 @@
-version: '3'
+
 
 services:
 
   db:
-    image: postgres:15
+    image: postgres:17
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata_2:/var/lib/postgresql/data
     environment:
       TZ: Europe/Moscow
       POSTGRES_PASSWORD: profit
@@ -24,14 +24,6 @@ services:
     environment:
       PHP_IDE_CONFIG: "serverName=Docker"
 
-  php-cli:
-     build:
-       context: docker/php-cli
-     volumes:
-        -   ./:/app
-     environment:
-      PHP_IDE_CONFIG: "serverName=Docker"
-
   nginx:
     build:
       context: docker/nginx-php
@@ -43,6 +35,5 @@ services:
       - php-fpm
 
 
-
 volumes:
-  pgdata:
+  pgdata_2:

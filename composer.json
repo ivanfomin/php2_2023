@@ -1,0 +1,16 @@
+{
+  "name": "ifomin/php2_2023",
+  "description": "php2_level",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "ioan",
+      "email": "la-verne@mail.ru"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "ext-pdo": "*"
+  }
+}

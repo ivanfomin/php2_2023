@@ -36,6 +36,7 @@ foreach ($articles as $article) { ?>
             <input type="text" name="id" value="<?php echo $article->id; ?>" style="width: 5%">
             <input type="text" name="title" value="<?php echo $article->title; ?>">
             <input type="text" name="content" value="<?php echo $article->content; ?>" style="width: 50%">
+            <input readonly type="text" name="author" value="<?php echo $article->author; ?>" >
             <input type="submit" name="update" value="Изменить">
             <input type="submit" name="delete" value="Удалить">
         </form>
@@ -51,6 +52,8 @@ foreach ($articles as $article) { ?>
         <input type="submit" name="insert" value="Сохранить">
     </form>
 </div>
+<br>
+<a class="wrap" href="/public/index.php">Статьи</a>
 
 </body>
 </html>

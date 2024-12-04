@@ -15,9 +15,9 @@ class Article extends \Model
     {
         if (empty($this->author_id)) {
             return 'Инкогнито';
-        } else {
-            return Author::findById($this->author_id)->name;
         }
+
+        return Author::findById($this->author_id)->name;
     }
 
     public static function findLastArticles(): array

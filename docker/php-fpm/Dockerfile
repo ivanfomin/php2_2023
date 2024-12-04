@@ -1,6 +1,6 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.4.1-fpm-alpine
 
-ENV XDEBUG_VERSION=3.3.1
+ENV XDEBUG_VERSION=3.4.0
 
 
 RUN apk update && apk add --no-cache \

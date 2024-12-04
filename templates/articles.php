@@ -14,6 +14,7 @@
     <tr>
         <th>Название</th>
         <th>Содержимое</th>
+        <th>Автор</th>
     </tr>
     <?php foreach ($this->data['articles'] as $article) : ?>
     <tr>

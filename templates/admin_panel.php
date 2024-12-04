@@ -4,36 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        div {
-            width: 800px;
-            border: 2px solid grey;
-            margin: 50px auto 0;
-            padding: 0 15px;
-            font-family: Verdana, sans-serif;
-            background-color: #d8e9f1;
-        }
-
-        .wrap {
-            position: absolute;
-            left: 50%;
-        }
-    </style>
+    <link rel="stylesheet" href="/templates/styles.css">
 </head>
 <body>
 
 <?php
 
-require_once __DIR__ . '/../autoload.php';
-
-use Models\Article;
-
-$articles = Article::findAll();
-
-foreach ($articles as $article) { ?>
+foreach ($this->articles as $article) { ?>
     <div>
         <form method="post" action="../action.php">
-            <input type="text" name="id" value="<?php echo $article->id; ?>" style="width: 5%">
+            <input type="number" name="id" value="<?php echo $article->id; ?>" style="width: 5%">
             <input type="text" name="title" value="<?php echo $article->title; ?>">
             <input type="text" name="content" value="<?php echo $article->content; ?>" style="width: 50%">
             <input readonly type="text" name="author" value="<?php echo $article->author; ?>" >
@@ -53,7 +33,7 @@ foreach ($articles as $article) { ?>
     </form>
 </div>
 <br>
-<a class="wrap" href="/public/index.php">Статьи</a>
+<a class="wrap" href="/index.php">Статьи</a>
 
 </body>
 </html>

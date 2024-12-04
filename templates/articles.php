@@ -20,7 +20,10 @@
     <tr>
         <td><?=$article->title;?></td>
         <td><?=$article->content;?></td>
+        <td><a href="/News/actionOne/?<?=$article->id;?>">Читать...</a> </td>
+        <td><a href="/article/">Читать...</a> </td>
         <td><?=$article->author;?></td>
+        <td><?=$article->id;?></td>
     </tr>
     <?php endforeach; ?>
 </table>

@@ -1,5 +1,6 @@
 <?php
 
+namespace Models;
 abstract class Model
 {
 
@@ -9,14 +10,14 @@ abstract class Model
 
     public static function findAll(): array
     {
-        $db = \Db::instance();
+        $db = \App\Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id';
         return $db->query($sql, static::class);
     }
 
     public static function findById($id): static
     {
-        $db = \Db::instance();
+        $db = \App\Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
 
         $article = $db->query($sql, static::class, ['id' => $id])[0];
@@ -42,7 +43,7 @@ abstract class Model
 
         $sql = 'INSERT INTO ' . static::TABLE . ' (' . implode(',', $columns) . ') VALUES (' . implode(',', $binds) . ');';
 
-        $db = \Db::instance();
+        $db = \App\Db::instance();
         $db->execute($sql, $params);
         $this->id = $db->lastId();
     }
@@ -60,7 +61,7 @@ abstract class Model
 
         $sql = 'UPDATE ' . static::TABLE . ' SET ' . mb_substr($prepare, 0, -2) . ' WHERE id=:id';
 
-        $db = \Db::instance();
+        $db = \App\Db::instance();
         $db->execute($sql, $params);
 
     }
@@ -78,7 +79,7 @@ abstract class Model
     {
         if (!empty($this->id)) {
             $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id=:id;';
-            $db = \Db::instance();
+            $db = \App\Db::instance();
             $db->execute($sql, [':id' => $this->id]);
         }
 
@@ -87,7 +88,7 @@ abstract class Model
     public function fill(array $data)
     {
         $errors = new \Exceptions\MultiException();
-//
+
         foreach ($data as $key => $value) {
 
             $validateMethod = 'validate' . ucfirst($key);
@@ -99,15 +100,12 @@ abstract class Model
 
                 } catch (\Exception $exception) {
                     $errors->add($exception);
-                    continue;
                 }
             }
-            var_dump($errors);die;
-            if (!empty($errors)) {
-                throw $errors;
-            }
+        }
 
-
+        if ($errors->count() > 0) {
+            throw $errors;
         }
     }
 

@@ -8,7 +8,7 @@ abstract class BaseController
 
     public function __construct()
     {
-        $this->view = new \View();
+        $this->view = new \App\View();
     }
 
     protected function access(): bool

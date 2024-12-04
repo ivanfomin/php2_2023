@@ -12,6 +12,7 @@ class NewsContr extends BaseController
         //if ($this->access()) {
 
             $this->view->articles = Article::findAll();
+
             $this->view->authors = Author::findAll();
 
             $this->view->display($template);

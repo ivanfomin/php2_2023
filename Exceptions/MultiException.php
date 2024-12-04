@@ -6,7 +6,7 @@ class MultiException extends \Exception implements \Iterator
 {
     protected array $data = [];
 
-    public function add($item)
+    public function add(\Exception $item)
     {
         $this->data[] = $item;
     }
@@ -34,6 +34,11 @@ class MultiException extends \Exception implements \Iterator
     public function rewind(): void
     {
         reset($this->data);
+    }
+
+    public function count()
+    {
+        return count($this->data);
     }
 
 

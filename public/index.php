@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../autoload.php';
 
+use App\View;
 use Models\Article;
 use Models\Author;
 

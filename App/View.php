@@ -1,8 +1,11 @@
 <?php
 
-class View implements Countable
+namespace App;
+
+class View implements \Countable
 {
     use MagicTrait;
+
     public function display(string $template)
     {
         include $template;

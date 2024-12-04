@@ -12,7 +12,7 @@
 
 foreach ($this->articles as $article) { ?>
     <div>
-        <form method="post" action="../action.php">
+        <form method="post" action="../actions/action.php">
             <input type="number" name="id" value="<?php echo $article->id; ?>" style="width: 5%">
             <input type="text" name="title" value="<?php echo $article->title; ?>">
             <input type="text" name="content" value="<?php echo $article->content; ?>" style="width: 50%">
@@ -26,7 +26,7 @@ foreach ($this->articles as $article) { ?>
 <p class="wrap"> Добавить новость </p>
 
 <div>
-    <form method="post" action="../action.php">
+    <form method="post" action="../actions/insert.php">
         <input type="text" name="title">
         <input type="text" name="content" style="width: 50%">
         <input type="submit" name="insert" value="Сохранить">

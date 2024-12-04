@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 use Models\Article;
 use Controllers\AdminContr;
 
-$id = $_POST['id'];
+$id = $_POST['id'] ?: null;
 $title = $_POST['title'];
 $content = $_POST['content'];
 
@@ -23,16 +23,6 @@ if (isset($_POST['update'])) {
 
     $article->delete();
 
-} else if (isset($_POST['insert'])) {
-    $article = new Article();
-    $article->fill(['title' => $title, 'content' => $content]);
-    //$article->title = $title;
-   // $article->content = $content;
-   // $article->wrong = 123;
-
-
-
-    $article->save();
 }
 
 header('Location: /Admin');

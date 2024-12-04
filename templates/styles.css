@@ -7,6 +7,20 @@ div {
     background-color: #d8e9f1;
 }
 
+.truncate {
+    background: #f4eddf; /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.ellipsis:hover {
+  white-space: normal;
+  text-overflow: clip;
+  overflow: visible;
+}
+
 .wrap {
     position: absolute;
     left: 50%;

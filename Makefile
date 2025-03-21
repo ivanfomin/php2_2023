@@ -4,24 +4,24 @@ down: docker-down
 restart: down up
 
 docker-up:
-	docker-compose up -d
+	docker compose up -d
 
 docker-down:
-	docker-compose down  --remove-orphans
+	docker compose down  --remove-orphans
 
 docker-down-clear:
-	docker-compose down -v --remove-orphans
+	docker compose down -v --remove-orphans
 
 docker-pull:
-	docker-compose pull
+	docker compose pull
 
 docker-build:
-	docker-compose build --pull
+	docker compose build --pull
 
 app-init:	composer-install
 
 composer-install:
-	docker-compose run --rm php-cli composer install
+	docker compose run --rm php-cli composer install
 
 test:
-	docker-compose run --rm php-cli composer tests
+	docker compose run --rm php-cli composer tests
